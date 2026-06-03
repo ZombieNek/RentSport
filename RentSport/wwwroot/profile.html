@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>RentSpot — Мой профиль</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/profile.css">
+</head>
+<body>
+
+    <!-- шапка -->
+    <header class="header">
+        <div class="container header__container">
+            <a href="index.html" class="logo">Rent<span>Spot</span></a>
+            <div class="header-actions">
+                <a href="messages.html" class="icon-btn" aria-label="Сообщения">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                    </svg>
+                </a>
+                <button id="themeToggle" class="icon-btn" aria-label="Тема">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5" />
+                        <line x1="12" y1="1" x2="12" y2="3" />
+                        <line x1="12" y1="21" x2="12" y2="23" />
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                        <line x1="1" y1="12" x2="3" y2="12" />
+                        <line x1="21" y1="12" x2="23" y2="12" />
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- тело -->
+    <main class="main">
+        <div class="container profile-container">
+
+            <!-- форма создания и редактирования профиля -->
+            <div id="profileFormSection" class="profile-form-section">
+                <div class="form-card">
+                    <h1 class="form-title" id="profileFormTitle">Создание профиля</h1>
+                    <p class="form-subtitle">Заполните данные о себе, чтобы начать пользоваться сервисом</p>
+                    <form id="profileForm" novalidate>
+                        <div class="form-group">
+                            <label for="fullName" class="form-label">Полное имя *</label>
+                            <input type="text" id="fullName" name="fullName" class="form-input" placeholder="Иванов Иван Иванович">
+                            <div class="error-message" id="nameError"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email *</label>
+                            <input type="email" id="email" name="email" class="form-input" placeholder="ivan@example.com">
+                            <div class="error-message" id="emailError"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone" class="form-label">Телефон *</label>
+                            <input type="tel" id="phone" name="phone" class="form-input" placeholder="+7 (999) 123-45-67">
+                            <div class="error-message" id="phoneError"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="city" class="form-label">Город *</label>
+                            <input type="text" id="city" name="city" class="form-input" placeholder="Москва">
+                            <div class="error-message" id="cityError"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="bio" class="form-label">О себе</label>
+                            <textarea id="bio" name="bio" class="form-textarea" rows="4" placeholder="Расскажите о себе, как долго занимаетесь спортом, какой инвентарь сдаёте..."></textarea>
+                            <div class="char-counter" id="bioCounter">0 / 500 символов</div>
+                        </div>
+                        <div class="form-buttons">
+                            <button type="submit" class="btn-primary" id="submitBtn">Создать профиль</button>
+                            <button type="button" class="btn-secondary" id="cancelEditBtn" style="display: none;">Отмена</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- инфо профиля -->
+            <div id="profileInfoSection" class="profile-info-section" style="display: none;">
+                <div class="profile-header">
+                    <!-- Аватарка -->
+                    <div class="profile-avatar">
+                        <div class="avatar-wrapper" id="avatarWrapper">
+                            <img id="profileAvatar" src="" alt="Аватар">
+                            <div class="avatar-overlay" id="avatarOverlay">
+                                <div class="avatar-upload-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+                                        <circle cx="12" cy="13" r="4" />
+                                    </svg>
+                                    <span>Изменить фото</span>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="file" id="avatarFileInput" class="avatar-file-input" accept="image/jpeg,image/png,image/jpg" style="display: none;">
+                    </div>
+                    <!-- Данные профиля -->
+                    <div class="profile-details">
+                        <h1 id="profileName"></h1>
+                        <div class="profile-contacts">
+                            <p class="profile-email" id="profileEmail"></p>
+                            <p class="profile-phone" id="profilePhone"></p>
+                            <p class="profile-city" id="profileCity"></p>
+                        </div>
+                        <p class="profile-bio" id="profileBio"></p>
+                        <button id="editProfileBtn" class="btn-secondary">✎ Редактировать профиль</button>
+                    </div>
+                </div>
+
+                <!-- объявления -->
+                <div class="my-ads-section">
+                    <div class="my-ads-header">
+                        <h2>Мои объявления</h2>
+                        <button id="createAdBtn" class="btn-primary">+ Создать объявление</button>
+                    </div>
+                    <div id="myAdsGrid" class="ads-grid">
+                        <div class="loading-spinner"><p>Загрузка объявлений...</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- модалка объявления -->
+    <div id="adModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Создание объявления</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <form id="adForm">
+                <input type="hidden" id="adId" value="">
+
+                <div class="form-group">
+                    <label for="adTitle">Название товара *</label>
+                    <input type="text" id="adTitle" class="form-input">
+                    <div class="error-message" id="adTitleError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="adCategory">Категория *</label>
+                    <select id="adCategory" class="form-input">
+                        <option value="">Выберите категорию</option>
+                        <option value="сноуборд">Сноуборд</option>
+                        <option value="скейтборд">Скейтборд</option>
+                        <option value="коньки">Коньки</option>
+                        <option value="велосипед">Велосипед</option>
+                        <option value="ролики">Ролики</option>
+                        <option value="самокат">Самокат</option>
+                    </select>
+                    <div class="error-message" id="adCategoryError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="adPrice">Цена за час (₽) *</label>
+                    <input type="number" id="adPrice" class="form-input" min="1">
+                    <div class="error-message" id="adPriceError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="adLocation">Локация *</label>
+                    <input type="text" id="adLocation" class="form-input">
+                    <div class="error-message" id="adLocationError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Фото товара *</label>
+                    <div class="image-upload-area" id="imageUploadArea">
+                        <div class="upload-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="2" y="4" width="20" height="16" rx="2" />
+                                <circle cx="8.5" cy="10.5" r="2.5" />
+                                <path d="M21 15l-5-4-3 3-4-4-5 5" />
+                            </svg>
+                        </div>
+                        <div class="upload-text">Нажмите или перетащите фото сюда</div>
+                        <div class="upload-hint">PNG, JPG, JPEG до 5MB</div>
+                        <input type="file" id="adImageFile" class="hidden" accept="image/jpeg,image/png,image/jpg" required>
+                    </div>
+                    <div class="image-preview" id="imagePreview" style="display: none;">
+                        <img id="previewImg" src="" alt="Превью">
+                        <button type="button" class="remove-image-btn" id="removeImageBtn">×</button>
+                    </div>
+                    <div class="error-message" id="adPhotoError"></div>
+                    <input type="hidden" id="adPhotoData" value="">
+                </div>
+
+                <div class="form-group">
+                    <label for="adDescription">Описание</label>
+                    <textarea id="adDescription" class="form-textarea" rows="3" placeholder="Опишите состояние, размеры, особенности..."></textarea>
+                </div>
+
+                <div class="modal-buttons">
+                    <button type="button" id="cancelAdBtn" class="btn-secondary">Отмена</button>
+                    <button type="submit" class="btn-primary">Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- плавающая кнопка -->
+    <a href="profile.html" class="fab" id="fabButton">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+            <line x1="12" y1="5" x2="12" y2="19" />
+            <line x1="5" y1="12" x2="19" y2="12" />
+        </svg>
+    </a>
+
+    <!-- футер -->
+    <footer class="footer">
+        <div class="container footer__container">
+            <p>© 2026 RentSpot — Аренда спортивного инвентаря</p>
+            <div class="footer-links">
+                <a href="#">О проекте</a>
+                <a href="#">Контакты</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/profile.js"></script>
+</body>
+</html>

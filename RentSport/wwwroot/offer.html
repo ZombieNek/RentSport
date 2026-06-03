@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>RentSpot — Просмотр объявления</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/offer.css">
+</head>
+<body>
+
+    <!-- шапка -->
+    <header class="header">
+        <div class="container header__container">
+            <a href="index.html" class="logo">Rent<span>Spot</span></a>
+            <div class="header-actions">
+                <a href="messages.html" class="icon-btn" aria-label="Сообщения">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                    </svg>
+                </a>
+                <a href="profile.html" class="icon-btn" aria-label="Профиль">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                    </svg>
+                </a>
+                <button id="themeToggle" class="icon-btn" aria-label="Тема">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5" />
+                        <line x1="12" y1="1" x2="12" y2="3" />
+                        <line x1="12" y1="21" x2="12" y2="23" />
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                        <line x1="1" y1="12" x2="3" y2="12" />
+                        <line x1="21" y1="12" x2="23" y2="12" />
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- тело -->
+    <main class="main">
+        <div class="container offer-container">
+
+            <div id="loadingState" class="loading-state">
+                <div class="spinner"></div>
+                <p>Загрузка объявления...</p>
+            </div>
+
+            <div id="errorState" class="error-state" style="display: none;">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="8" x2="12" y2="12" />
+                    <line x1="12" y1="16" x2="12.01" y2="16" />
+                </svg>
+                <h2>Объявление не найдено</h2>
+                <p>Возможно, оно было удалено или ссылка неверна</p>
+                <a href="index.html" class="btn-primary">Вернуться на главную</a>
+            </div>
+
+            <!-- объявление -->
+            <div id="offerContent" class="offer-content" style="display: none;">
+
+                <!-- навигация -->
+                <div class="breadcrumbs">
+                    <a href="index.html">Главная</a>
+                    <span>/</span>
+                    <span class="current" id="breadcrumbCategory">Объявление</span>
+                </div>
+
+                <!-- сетка -->
+                <div class="offer-grid">
+
+                    <!-- фото и описание -->
+                    <div class="offer-left">
+                        <div class="offer-gallery">
+                            <div class="main-photo">
+                                <img id="mainPhoto" src="" alt="Фото товара">
+                            </div>
+                        </div>
+
+                        <div class="offer-info-card">
+                            <div class="offer-header">
+                                <h1 id="offerTitle"></h1>
+                                <div class="offer-price" id="offerPrice"></div>
+                            </div>
+
+                            <div class="offer-chips">
+                                <div class="chip">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M20 7h-4.18A3 3 0 0 0 16 5.18V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v1.18A3 3 0 0 0 8.18 7H4" />
+                                        <path d="M20 7v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7" />
+                                        <circle cx="12" cy="12" r="2" />
+                                    </svg>
+                                    <span id="offerCategory"></span>
+                                </div>
+                                <div class="chip">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10" />
+                                        <polyline points="12 6 12 12 16 14" />
+                                    </svg>
+                                    <span id="offerDate"></span>
+                                </div>
+                            </div>
+
+                            <div class="offer-description">
+                                <h3>Описание</h3>
+                                <p id="offerDescription"></p>
+                            </div>
+
+                            <!-- карта -->
+                            <div class="offer-map">
+                                <h3>📍 Местоположение</h3>
+                                <div id="mapPlaceholder" class="map-placeholder">
+                                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                                        <circle cx="12" cy="10" r="3" />
+                                    </svg>
+                                    <p>Загрузка карты...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- продавец -->
+                    <div class="offer-right">
+                        <div class="seller-card">
+                            <div class="seller-header">
+                                <img id="ownerAvatar" class="seller-avatar" src="" alt="Аватар">
+                                <h4 id="ownerName"></h4>
+                                <div class="seller-rating">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 17.27 18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21 12 17.27" /></svg>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 17.27 18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21 12 17.27" /></svg>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 17.27 18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21 12 17.27" /></svg>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 17.27 18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21 12 17.27" /></svg>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="12 17.27 18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21 12 17.27" /></svg>
+                                    <span>4.8</span>
+                                </div>
+                            </div>
+
+                            <div class="seller-info">
+                                <div class="info-row">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                        <polyline points="22,6 12,13 2,6" />
+                                    </svg>
+                                    <span id="ownerEmail"></span>
+                                </div>
+                                <div class="info-row">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                                        <circle cx="12" cy="10" r="3" />
+                                    </svg>
+                                    <span>На сайте с 2024 года</span>
+                                </div>
+                            </div>
+
+                            <div class="seller-actions">
+                                <button id="contactBtn" class="btn-contact">📩 Написать сообщение</button>
+                                <button id="callBtn" class="btn-chat">📞 Показать телефон</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- похожие объявления -->
+                <div class="similar-section">
+                    <h2>Похожие объявления</h2>
+                    <div id="similarAdsGrid" class="similar-grid"></div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- футер -->
+    <footer class="footer">
+        <div class="container footer__container">
+            <p>© 2026 RentSpot — Аренда спортивного инвентаря</p>
+            <div class="footer-links">
+                <a href="#">О проекте</a>
+                <a href="#">Контакты</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- модалка телефона -->
+    <div id="phoneModal" class="phone-modal" style="display: none;">
+        <div class="phone-modal-content">
+            <button class="phone-modal-close">&times;</button>
+            <div class="phone-modal-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg>
+            </div>
+            <h3>Контактный телефон</h3>
+            <div class="phone-number" id="phoneNumberDisplay">+7 (999) 123-45-67</div>
+            <div class="phone-modal-actions">
+                <a id="callPhoneLink" href="tel:+79991234567" class="btn-primary call-btn">📞 Позвонить</a>
+            </div>
+            <p class="phone-modal-hint">Нажмите на номер, чтобы скопировать</p>
+        </div>
+    </div>
+
+    <script src="js/offer.js"></script>
+</body>
+</html>

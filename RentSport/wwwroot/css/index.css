@@ -1,0 +1,549 @@
+
+
+/* глобальные переменные */
+:root {
+    --blue: #2563EB;
+    --blue-dark: #1E40AF;
+    --carrot: #F97316;
+    --carrot-dark: #EA580C;
+    --gray-bg: #F9FAFB;
+    --gray-border: #E5E7EB;
+    --text-primary: #111827;
+    --text-secondary: #6B7280;
+    --white: #FFFFFF;
+    --shadow-hover: 0 10px 25px -5px rgba(37, 99, 235, 0.15);
+    --radius-card: 16px;
+    --radius-btn: 40px;
+    --transition: all 0.2s ease;
+}
+/*-----------------------------------------------*/
+
+/* базовые стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--white);
+    color: var(--text-primary);
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+/*-----------------------------------------------*/
+
+/* шапка и навигация */
+.header {
+    border-bottom: 1px solid var(--gray-border);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 12px 24px;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--text-primary);
+    flex-shrink: 0;
+}
+
+    .logo span {
+        color: var(--carrot);
+    }
+
+/* Поиск */
+.search-wrapper {
+    flex: 1;
+    max-width: 480px;
+    position: relative;
+}
+
+.search-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 16px 12px 48px;
+    border: 1.5px solid var(--gray-border);
+    border-radius: var(--radius-btn);
+    font-size: 1rem;
+    transition: var(--transition);
+    font-family: inherit;
+}
+
+    .search-input:focus {
+        outline: none;
+        border-color: var(--blue);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+/* Кнопки в шапке */
+.header-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.icon-btn {
+    background: transparent;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    color: var(--text-secondary);
+    border-radius: 50%;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .icon-btn:hover {
+        background: var(--gray-bg);
+        color: var(--blue);
+    }
+
+/*-----------------------------------------------*/
+
+/* основной контент*/
+.main {
+    flex: 1;
+    padding: 32px 0 64px;
+}
+/*-----------------------------------------------*/
+
+/* категории */
+.categories-section {
+    margin-bottom: 32px;
+}
+
+.categories-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.reset-link {
+    background: none;
+    border: none;
+    color: var(--carrot);
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+    .reset-link:hover {
+        color: var(--carrot-dark);
+    }
+
+.categories-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+}
+
+.categories {
+    display: flex;
+    gap: 12px;
+    padding-bottom: 4px;
+}
+
+.category {
+    padding: 8px 20px;
+    border: 1.5px solid var(--gray-border);
+    border-radius: 40px;
+    background: var(--white);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    white-space: nowrap;
+    color: var(--text-secondary);
+}
+
+    .category:hover {
+        border-color: var(--blue);
+        color: var(--blue);
+    }
+
+    .category.active {
+        border-color: var(--carrot);
+        color: var(--carrot);
+    }
+/*-----------------------------------------------*/
+
+/* сортировка */
+.sort-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 32px;
+    padding: 16px 0;
+    border-top: 1px solid var(--gray-border);
+    border-bottom: 1px solid var(--gray-border);
+}
+
+.sort-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+}
+
+.sort-label {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.sort-btn {
+    padding: 6px 14px;
+    border: 1px solid var(--gray-border);
+    border-radius: 32px;
+    background: var(--white);
+    font-size: 0.75rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    color: var(--text-secondary);
+}
+
+    .sort-btn:hover {
+        border-color: var(--blue);
+        color: var(--blue);
+    }
+
+.results-count {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+/*-----------------------------------------------*/
+
+/* сетка карточек */
+.ads-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+}
+/*-----------------------------------------------*/
+
+/* карточка объявления */
+.ad-card {
+    background: var(--white);
+    border: 1px solid var(--gray-border);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    transition: var(--transition);
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+    .ad-card:hover {
+        border-color: var(--blue);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-hover);
+    }
+
+.card-image {
+    aspect-ratio: 4 / 3;
+    background: var(--gray-bg);
+    overflow: hidden;
+}
+
+    .card-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+.ad-card:hover .card-image img {
+    transform: scale(1.02);
+}
+
+.card-content {
+    padding: 16px;
+}
+
+.card-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    gap: 8px;
+}
+
+.card-price {
+    color: var(--carrot);
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.card-location {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+}
+
+.card-owner {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-top: 12px;
+    border-top: 1px solid var(--gray-border);
+    font-size: 0.75rem;
+}
+
+.owner-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: var(--gray-bg);
+}
+
+.owner-name {
+    font-weight: 500;
+    color: var(--text-primary);
+}
+/*-----------------------------------------------*/
+
+/* спинер загрузки */
+.loading-spinner {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 48px;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--gray-border);
+    border-top-color: var(--blue);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 16px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+/*-----------------------------------------------*/
+
+/* плавающая кнопка */
+.fab {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 56px;
+    height: 56px;
+    background: var(--blue);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    transition: var(--transition);
+    z-index: 90;
+    text-decoration: none;
+}
+
+    .fab:hover {
+        background: var(--blue-dark);
+        transform: scale(1.05);
+    }
+/*-----------------------------------------------*/
+
+/* футер */
+.footer {
+    background: var(--text-primary);
+    color: var(--white);
+    padding: 24px 0;
+    margin-top: auto;
+}
+
+.footer__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 0.875rem;
+}
+
+.footer-links {
+    display: flex;
+    gap: 24px;
+}
+
+    .footer-links a {
+        color: var(--white);
+        text-decoration: none;
+        opacity: 0.7;
+        transition: var(--transition);
+    }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--carrot);
+        }
+
+/*-----------------------------------------------*/
+
+/* адаптивность */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 16px;
+    }
+
+    .header__container {
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 12px 16px;
+    }
+
+    .search-wrapper {
+        order: 3;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .logo {
+        font-size: 1.25rem;
+    }
+
+    .ads-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .sort-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .sort-buttons {
+        justify-content: center;
+    }
+
+    .results-count {
+        text-align: center;
+    }
+
+    .categories {
+        gap: 8px;
+    }
+
+    .category {
+        padding: 6px 16px;
+        font-size: 0.75rem;
+    }
+
+    .fab {
+        display: flex;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1023px) {
+    .ads-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .fab {
+        display: none;
+    }
+}
+
+@media (min-width: 1024px) {
+    .ads-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .fab {
+        display: none;
+    }
+}
+/*-----------------------------------------------*/
+
+/* темная тема */
+body.dark-theme {
+    --gray-bg: #1F2937;
+    --gray-border: #374151;
+    --text-primary: #F9FAFB;
+    --text-secondary: #9CA3AF;
+    --white: #111827;
+}
+
+    body.dark-theme .header {
+        background: rgba(17, 24, 39, 0.95);
+    }
+
+    body.dark-theme .ad-card {
+        background: #1F2937;
+    }
+
+    body.dark-theme .card-owner {
+        border-top-color: #374151;
+    }
+
+    body.dark-theme .search-input,
+    body.dark-theme .category,
+    body.dark-theme .sort-btn {
+        background: #1F2937;
+        border-color: #374151;
+        color: #F9FAFB;
+    }
+
+        body.dark-theme .search-input:focus {
+            border-color: var(--blue);
+        }
+
+    body.dark-theme .footer {
+        background: #0F172A;
+    }
+
+/*-----------------------------------------------*/

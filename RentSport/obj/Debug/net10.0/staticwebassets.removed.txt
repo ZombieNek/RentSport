@@ -1,0 +1,6 @@
+C:\Users\pomni\source\repos\RentSport\RentSport\wwwroot\chat.html
+C:\Users\pomni\source\repos\RentSport\RentSport\wwwroot\chats.html
+C:\Users\pomni\source\repos\RentSport\RentSport\wwwroot\css\chat.css
+C:\Users\pomni\source\repos\RentSport\RentSport\wwwroot\css\chats.css
+C:\Users\pomni\source\repos\RentSport\RentSport\wwwroot\js\chat.js
+C:\Users\pomni\source\repos\RentSport\RentSport\wwwroot\js\chats.js
